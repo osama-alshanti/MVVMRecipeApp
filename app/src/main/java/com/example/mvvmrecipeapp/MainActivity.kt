@@ -2,12 +2,7 @@ package com.example.mvvmrecipeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.example.mvvmrecipeapp.ui.base.UiState
-import com.example.mvvmrecipeapp.ui.recipe.RecipeViewModel
-import com.google.gson.Gson
+import com.example.mvvmrecipeapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,28 +12,18 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-    private val recipeViewModel: RecipeViewModel by viewModels()
+    private var _binding: ActivityMainBinding?= null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+    }
 
-        recipeViewModel.getRecipe("1", "")
-        lifecycleScope.launchWhenStarted {
-            recipeViewModel.recipeStateFlow.collect{
-                when(it){
-                    is UiState.Loading -> {
-                        Log.d(TAG, "Loading: ")
-                    }
-                    is UiState.Success ->{
-                        Log.d(TAG, "Success:")
-                    }
-                    is UiState.Error ->{
-                        Log.d(TAG, "Error: ")
-                    }
-                }
-            }
-        }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
