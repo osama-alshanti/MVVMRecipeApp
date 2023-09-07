@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -31,6 +32,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+
+    buildFeatures{
+        viewBinding = true
     }
 }
 
@@ -61,7 +67,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
 
     //for supporting by viewModels()
-    implementation 'androidx.activity:activity-ktx:1.2.0'
+    implementation 'androidx.activity:activity-ktx:1.3.2'
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
@@ -72,6 +78,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
+    //navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_ver"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_ver"
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
