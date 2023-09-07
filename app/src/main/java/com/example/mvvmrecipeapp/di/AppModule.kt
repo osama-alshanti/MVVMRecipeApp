@@ -22,6 +22,14 @@ object AppModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
+    @Singleton
+    @Provides
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+        OkHttpClient
+            .Builder()
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+
     @Provides
     @Singleton
     fun provideBaseUrl() = "https://food2fork.ca/api/recipe/"
