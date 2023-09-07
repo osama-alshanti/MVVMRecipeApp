@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mvvmrecipeapp.data.model.RecipeNetworkEntity
 import com.example.mvvmrecipeapp.databinding.RecipeItemBinding
+import com.example.mvvmrecipeapp.ui.detail.ClickListener
 
-class RecipeAdapter(private val recipes: ArrayList<RecipeNetworkEntity>): RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
-
+class RecipeAdapter(private val recipes: ArrayList<RecipeNetworkEntity>, private val clickListener: ClickListener): RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
     fun setData(recipesList: List<RecipeNetworkEntity>){
         recipes.clear()
         recipes.addAll(recipesList)
@@ -30,6 +30,10 @@ class RecipeAdapter(private val recipes: ArrayList<RecipeNetworkEntity>): Recycl
     override fun getItemCount(): Int = recipes.size
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
-        holder.bind(recipes[position])
+        val recipe = recipes[position]
+        holder.bind(recipe)
+        holder.itemView.setOnClickListener {
+            clickListener.onRecipeItemClicked(recipe.pk?: 0)
+        }
     }
 }
