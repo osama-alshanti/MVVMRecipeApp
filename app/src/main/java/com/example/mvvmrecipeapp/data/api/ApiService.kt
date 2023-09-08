@@ -1,5 +1,6 @@
 package com.example.mvvmrecipeapp.data.api
 
+import com.example.mvvmrecipeapp.data.model.RecipeNetworkEntity
 import com.example.mvvmrecipeapp.data.model.RecipeSearchResponse
 import com.example.mvvmrecipeapp.utils.AppConstant.TOKEN
 import retrofit2.http.GET
@@ -14,4 +15,8 @@ interface ApiService {
     @Headers("Authorization: $TOKEN")
     suspend fun search(@Query("page") page:String,
                         @Query("query") query: String) : RecipeSearchResponse
+
+    @GET("get")
+    @Headers("Authorization: $TOKEN")
+    suspend fun getRecipeById(@Query("id") id: String) : RecipeNetworkEntity
 }

@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.mvvmrecipeapp.data.model.RecipeNetworkEntity
 import com.example.mvvmrecipeapp.databinding.RecipeItemBinding
 import com.example.mvvmrecipeapp.ui.detail.ClickListener
+import com.example.mvvmrecipeapp.utils.fromHtml
 
 class RecipeAdapter(private val recipes: ArrayList<RecipeNetworkEntity>, private val clickListener: ClickListener): RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
     fun setData(recipesList: List<RecipeNetworkEntity>){
@@ -17,7 +18,7 @@ class RecipeAdapter(private val recipes: ArrayList<RecipeNetworkEntity>, private
     class RecipeViewHolder(private val binding: RecipeItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(recipe: RecipeNetworkEntity){
             binding.tvId.text = "${recipe.rating?: 0}"
-            binding.tvTitle.text = recipe.title
+            binding.tvTitle.text = recipe.title.fromHtml()
             Glide.with(binding.root.context)
                 .load(recipe.featuredImage)
                 .into(binding.igvFood)
