@@ -1,6 +1,6 @@
 # MVVMRecipeApp
 
-Kotlin
+Kotlin\n
 MVVM
 MutableState
 Hilt
