@@ -5,7 +5,7 @@ MVVM\
 MutableState\
 Hilt\
 Navigation Components\
-sealed interface\
+Sealed interface\
 Retrofit2\
 Single Activity Architecture\
 ViewBidning\
