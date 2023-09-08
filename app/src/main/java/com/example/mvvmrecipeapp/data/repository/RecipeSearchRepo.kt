@@ -19,4 +19,10 @@ class RecipeSearchRepo @Inject constructor(private val apiService: ApiService) {
         }
     }
 
+    fun getRecipeById(id: String): Flow<RecipeNetworkEntity> {
+        return flow{
+            emit(apiService.getRecipeById(id))
+        }
+    }
+
 }
