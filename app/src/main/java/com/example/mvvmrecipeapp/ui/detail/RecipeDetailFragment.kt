@@ -23,7 +23,7 @@ class RecipeDetailFragment : Fragment() {
     private var _binding: FragmentRecipeDetailBinding?= null
     private val binding get() = _binding!!
     private val args: RecipeDetailFragmentArgs by navArgs()
-    private val viewModel: DetailViewModel by viewModels()
+    private val viewModel: RecipeDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class RecipeDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initToolbar()
-        setObserve()
+        setupObserve()
     }
 
     private fun initToolbar(){
@@ -48,8 +48,8 @@ class RecipeDetailFragment : Fragment() {
         }
     }
 
-    private fun setObserve(){
-        viewModel.getRecipeById(args.recipeId.toString())
+    private fun setupObserve(){
+        viewModel.getRecipeById(args.recipeId)
         lifecycleScope.launchWhenStarted {
             viewModel.getRecipeStateFlow.collect{
                 when(it){
@@ -61,7 +61,7 @@ class RecipeDetailFragment : Fragment() {
                         binding.progress.setVisibility(false)
                         binding.parent.setVisibility(true)
 
-                        populateRecipe(it.data[0])
+                        populateRecipe(it.data)
                     }
                     is UiState.Error ->{
                         binding.progress.setVisibility(false)
