@@ -2,6 +2,7 @@ package com.example.mvvmrecipeapp.ui.recipe
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mvvmrecipeapp.data.local.doa.RecipeDaoRepository
 import com.example.mvvmrecipeapp.data.model.RecipeNetworkEntity
 import com.example.mvvmrecipeapp.data.repository.RecipeSearchRepo
 import com.example.mvvmrecipeapp.ui.base.UiState

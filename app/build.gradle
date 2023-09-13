@@ -73,10 +73,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
     //room db
-    def roomVersion = "2.4.0-alpha03"
+    def roomVersion = "2.4.3"
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
 
     //navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_ver"
