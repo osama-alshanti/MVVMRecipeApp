@@ -50,6 +50,7 @@ class RecipeDetailFragment : Fragment() {
 
     private fun setupObserve(){
         viewModel.getRecipeById(args.recipeId)
+
         lifecycleScope.launchWhenStarted {
             viewModel.getRecipeStateFlow.collect{
                 when(it){

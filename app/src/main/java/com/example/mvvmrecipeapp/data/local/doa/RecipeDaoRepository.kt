@@ -12,8 +12,9 @@ class RecipeDaoRepository
         emit(recipeDao.getRecipeById(id))
     }
 
-    suspend fun addRecipe(recipe: RecipeNetworkEntity): Flow<Unit> = flow {
+    suspend fun addRecipe(recipe: RecipeNetworkEntity): Flow<RecipeNetworkEntity> = flow {
         recipeDao.insertRecipe(recipe)
+        emit(recipe)
     }
 
     suspend fun deleteRecipe(recipe: RecipeNetworkEntity): Flow<Unit> = flow {

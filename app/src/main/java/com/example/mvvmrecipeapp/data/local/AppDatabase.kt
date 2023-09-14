@@ -7,7 +7,7 @@ import com.example.mvvmrecipeapp.data.local.doa.RecipeDao
 import com.example.mvvmrecipeapp.data.model.RecipeNetworkEntity
 
 @TypeConverters(Converters::class)
-@Database(entities = [RecipeNetworkEntity::class], version = 1)
+@Database(entities = [RecipeNetworkEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun recipeDao(): RecipeDao

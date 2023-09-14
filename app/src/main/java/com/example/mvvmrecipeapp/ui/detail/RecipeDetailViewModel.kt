@@ -9,8 +9,10 @@ import com.example.mvvmrecipeapp.data.repository.RecipeSearchRepo
 import com.example.mvvmrecipeapp.ui.base.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,9 +33,6 @@ class RecipeDetailViewModel @Inject constructor(private val apiRepo: RecipeSearc
                          return@flatMapConcat apiRepo.getRecipeById(id.toString())
                             .flatMapConcat { recipesToInsertInDB ->
                                 dbRepo.addRecipe(recipesToInsertInDB)
-                                flow {
-                                    emit(recipesToInsertInDB)
-                                }
                             }
                     }else{
                          return@flatMapConcat flow {
