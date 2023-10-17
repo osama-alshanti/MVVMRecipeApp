@@ -2,10 +2,10 @@
 
 Kotlin\
 MVVM\
+Flow\
 MutableState\
 Hilt\
 Coroutine\
-Flow\
 Navigation Components\
 Sealed interface\
 Retrofit2\
